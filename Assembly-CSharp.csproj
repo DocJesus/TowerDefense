@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Script\BuildManager.cs" />
     <Compile Include="Assets\Script\Bullet.cs" />
+    <Compile Include="Assets\Script\CameraController.cs" />
     <Compile Include="Assets\Script\ennem.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\Node.cs" />
