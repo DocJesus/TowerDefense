@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
+    public float explosionRadius = 0f;
+
     public GameObject ImpactEffect;
     private Transform target;
 
@@ -36,17 +38,52 @@ public class Bullet : MonoBehaviour {
         }
 
         transform.Translate(dir.normalized * distanceFrame, Space.World);
+        transform.LookAt(target);
 	}
 
     private void HitTarget()
     {
-        Destroy(gameObject);
         GameObject effectIns = (GameObject)Instantiate(ImpactEffect, transform.position, transform.rotation);
-        Destroy(effectIns, 2.3f);
+        Destroy(effectIns, 5f);
+
+        if (explosionRadius > 0)
+        {
+            Explode();
+        }
+        else
+        {
+            Damage(target);
+        }
+
+        Destroy(gameObject);
+    }
+
+    void Damage(Transform ennemy)
+    {
+        Destroy(ennemy.gameObject);
     }
 
     public void Seek(Transform _target)
     {
         target = _target;
+    }
+
+    void Explode()
+    {
+        //créer une sphere qq part d'une certaine taille et return tout les objets en colision avec
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.tag == "Ennemy")
+            {
+                Damage(collider.transform);
+            }
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }
