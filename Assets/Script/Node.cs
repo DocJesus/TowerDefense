@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 public class Node : MonoBehaviour
 {
     public Color hoverColor;
+    public Color notEnoughMoneyColor;
+
     public GameObject turret;
     public Vector3 positionOffset;
 
@@ -56,7 +58,12 @@ public class Node : MonoBehaviour
 
         if (!manager.canBuild)
             return;
-        render.material.color = hoverColor;
+
+        //si on a assez de tune on color la case au dessus de laquelle on passe
+        if (manager.hasMoney)
+            render.material.color = hoverColor;
+        else
+            render.material.color = notEnoughMoneyColor;
     }
 
     //quand la souris sors du contact avec l'obj

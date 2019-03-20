@@ -5,10 +5,16 @@ using UnityEngine;
 public class BuildManager : MonoBehaviour
 {
     private TurretBlueprint turretToBuild;
+    public GameObject spawnParticule;
 
     public bool canBuild
     {
         get { return turretToBuild != null; }
+    }
+
+    public bool hasMoney
+    {
+        get { return PlayerStat.money >= turretToBuild.cost; }
     }
 
     public void SelectTurretToBuild(TurretBlueprint _turret)
@@ -28,6 +34,9 @@ public class BuildManager : MonoBehaviour
 
         PlayerStat.money -= turretToBuild.cost;
         Debug.Log("objet acheter il vous reste " + PlayerStat.money);
+
+        GameObject effect = (GameObject)Instantiate(spawnParticule, node.transform.position + node.positionOffset, Quaternion.identity);
+        Destroy(effect, 2f);
 
         GameObject turret = (GameObject)Instantiate(turretToBuild.prefab, node.transform.position + node.positionOffset, Quaternion.identity);
         node.turret = turret;
