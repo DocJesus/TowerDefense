@@ -282,4 +282,4 @@ MonoBehaviour:
   range: 15
   partToRotate: {fileID: 4735169216445826}
   ennemyTag: Ennemy
-  fireRate: 0.25
+  fireRate: 0.5

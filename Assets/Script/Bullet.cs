@@ -6,6 +6,8 @@ public class Bullet : MonoBehaviour {
 
     public float explosionRadius = 0f;
 
+    public int damage = 50;
+
     public GameObject ImpactEffect;
     private Transform target;
 
@@ -58,11 +60,6 @@ public class Bullet : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    void Damage(Transform ennemy)
-    {
-        Destroy(ennemy.gameObject);
-    }
-
     public void Seek(Transform _target)
     {
         target = _target;
@@ -79,6 +76,17 @@ public class Bullet : MonoBehaviour {
                 Damage(collider.transform);
             }
         }
+    }
+
+
+    void Damage(Transform ennemy)
+    {
+        ennem e = ennemy.GetComponent<ennem>();
+
+        if (e != null)
+            e.TakeDamage(damage);
+        else
+            Debug.LogError("pas de compoenent ennem");
     }
 
     private void OnDrawGizmosSelected()

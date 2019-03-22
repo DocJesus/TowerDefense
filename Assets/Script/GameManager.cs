@@ -1,16 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
+    private bool gameEnded = false;
+
 	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {
+        if (gameEnded)
+            return;
+
+	    if (PlayerStat.lives < 0)
+        {
+            EndGame();
+        }
 	}
+
+    void EndGame()
+    {
+        gameEnded = true;
+        Debug.Log("GameOver");
+    }
 }
