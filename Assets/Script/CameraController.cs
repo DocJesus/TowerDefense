@@ -2,7 +2,7 @@
 
 public class CameraController : MonoBehaviour
 {
-    private bool canMove = true;
+    //private bool canMove = true;
 
     public float panSpeed = 30f;
     public float panBorder = 20f;
@@ -20,11 +20,13 @@ public class CameraController : MonoBehaviour
             return;
         }
 
+        /*
         if (Input.GetKey(KeyCode.Escape))
             canMove = !canMove;
 
         if (!canMove)
             return;
+        */
 
         //movement de la camera (up) et si la souris colles les bordures
 		if (Input.GetKey(KeyCode.Z) || Input.mousePosition.y >= Screen.height - panBorder)
