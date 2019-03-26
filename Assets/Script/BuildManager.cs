@@ -6,6 +6,9 @@ public class BuildManager : MonoBehaviour
 {
     private TurretBlueprint turretToBuild;
     public GameObject spawnParticule;
+    private Node selectedNode;
+
+    public NodeUI nodeUI;
 
     public bool canBuild
     {
@@ -20,26 +23,31 @@ public class BuildManager : MonoBehaviour
     public void SelectTurretToBuild(TurretBlueprint _turret)
     {
         turretToBuild = _turret;
+        DeselectNode();
     }
 
-    public void BuildTurretOn(Node node)
+    public void SelectNode(Node _node)
     {
-
-        //si le joueur a moins d'argent que le cout de la tourelle
-        if (PlayerStat.money < turretToBuild.cost)
+        turretToBuild = null;
+        if (_node == selectedNode)
         {
-            Debug.Log("pas assez d'argent pour acheter cela");
+            DeselectNode();
             return;
         }
 
-        PlayerStat.money -= turretToBuild.cost;
-        Debug.Log("objet acheter il vous reste " + PlayerStat.money);
+        selectedNode = _node;
+        nodeUI.SetTarget(_node);
+    }
 
-        GameObject effect = (GameObject)Instantiate(spawnParticule, node.transform.position + node.positionOffset, Quaternion.identity);
-        Destroy(effect, 2f);
+    public TurretBlueprint getTurretToBUild()
+    {
+        return turretToBuild;
+    }
 
-        GameObject turret = (GameObject)Instantiate(turretToBuild.prefab, node.transform.position + node.positionOffset, Quaternion.identity);
-        node.turret = turret;
+    public void DeselectNode()
+    {
+        selectedNode = null;
+        nodeUI.Hide();
     }
 
     #region singletone

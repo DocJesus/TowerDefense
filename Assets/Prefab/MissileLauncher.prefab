@@ -99,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1625045748612020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.47, y: 1.88, z: -0.02}
+  m_LocalPosition: {x: 0.01, y: 1.88, z: 1.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4735169216445826}
@@ -139,7 +139,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1984044289244282}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.07999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -147,20 +147,20 @@ Transform:
   - {fileID: 4278089210353300}
   m_Father: {fileID: 4355586600081544}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4758366758483718
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1925754992957728}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 1.3974535, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4735169216445826}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 90, z: 0}
 --- !u!23 &23320152555493594
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -276,10 +276,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9647e6e26cbd8654ba54d59d65cc393e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: 15
+  fireRate: 0.5
   bulletPrefab: {fileID: 1705122027603168, guid: 1d398e8a35b8bd4469ffd0bf32abf9cb,
     type: 2}
+  laserBeam: {fileID: 0}
+  userLaser: 0
   firePoint: {fileID: 4278089210353300}
-  range: 15
   partToRotate: {fileID: 4735169216445826}
   ennemyTag: Ennemy
-  fireRate: 0.5

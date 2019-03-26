@@ -7,7 +7,7 @@ public class ennem : MonoBehaviour
     private Transform target;
     private int wayPointIndex = 0;
 
-    public int health = 100;
+    public float health = 100;
     public int valueMoney = 50;
 
     public GameObject deathParticule;
@@ -18,7 +18,7 @@ public class ennem : MonoBehaviour
         target = WayPoints.points[wayPointIndex];   	
 	}
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         health -= amount;
 
