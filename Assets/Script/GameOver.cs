@@ -1,27 +1,24 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour {
 
-    public Text roundText;
     //public Animator anim;
 
-    //parceque de base l'obj est désactivé donc quand il est activé cette fct est appelé
-    private void OnEnable()
-    {
-        //anim.SetTrigger("GameOver");
-        roundText.text = PlayerStat.rounds.ToString();
-    }
+    public string menuName;
+
+    public ScreenFadder fadder;
 
     public void Retry()
     {
         //charge la scene active
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        fadder.FadeTo(SceneManager.GetActiveScene().name);
     }
 
     public void Menu()
     {
         Debug.Log("Menu");
+        fadder.FadeTo(menuName);
     }
 }

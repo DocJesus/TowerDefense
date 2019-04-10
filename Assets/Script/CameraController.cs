@@ -20,6 +20,8 @@ public class CameraController : MonoBehaviour
             return;
         }
 
+        return;
+
         /*
         if (Input.GetKey(KeyCode.Escape))
             canMove = !canMove;

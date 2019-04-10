@@ -6,6 +6,10 @@ public class GameManager : MonoBehaviour {
 
     public GameObject gameOverUI;
     public GameObject pauseUI;
+    public GameObject winUI;
+
+    public ScreenFadder fadder;
+
 
     private void Start()
     {
@@ -31,5 +35,11 @@ public class GameManager : MonoBehaviour {
     {
         gameIsOver = true;
         gameOverUI.SetActive(true);
+    }
+
+    public void WinLevel()
+    {
+        winUI.SetActive(true);
+        gameIsOver = true;
     }
 }

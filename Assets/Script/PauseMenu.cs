@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour {
 
     public GameObject UI;
+    public ScreenFadder fadder;
+    public string MenuName = "MainMenu";
 
 	// Update is called once per frame
 	void Update ()
@@ -34,11 +36,15 @@ public class PauseMenu : MonoBehaviour {
     {
         Toggel();
         //on recharge la scenen actuel
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        fadder.FadeTo(SceneManager.GetActiveScene().name);
     }
 
     public void MainMenu()
     {
         Debug.Log("MainMenu");
+        //charge une scene avec un fadder
+        Toggel();
+        fadder.FadeTo(MenuName);
     }
 }

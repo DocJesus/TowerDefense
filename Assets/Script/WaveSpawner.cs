@@ -4,25 +4,36 @@ using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour {
 
+    public Wave[] waves;
     [SerializeField]
     private Transform StartPoint;
-    [SerializeField]
-    private Transform ennemyPrefab;
     [SerializeField]
     private float timeBetweenWaves = 5.5f;
 
     [SerializeField]
     private float countDown = 5f;
 
-    private int wave = 0;
+    private int waveCount = 0;
 
     [SerializeField]
     private Text waveCountDownTimer;
 
+    public GameManager gameManager;
+
+    public static int ennemyAlive = 0;
+
 	// Update is called once per frame
 	void Update ()
     {
-		if (countDown <= 0)
+
+        if (waveCount == waves.Length && ennemyAlive == 0)
+        {
+            gameManager.WinLevel();
+            this.enabled = false;
+            return;
+        }
+
+        if (countDown <= 0)
         {
             StartCoroutine(SpawnWave());
             countDown = timeBetweenWaves;
@@ -35,19 +46,26 @@ public class WaveSpawner : MonoBehaviour {
 
     IEnumerator SpawnWave()
     {
-        wave++;
         PlayerStat.rounds++;
+
+
+
+        Wave wave = waves[waveCount];
+
         Debug.Log("Appartion d'une nouvelle vague");
-        for (int i = 0; i < wave; i++)
+        for (int i = 0; i < wave.count; i++)
         {
-            SpawnEnnemy();
-            yield return new WaitForSeconds(0.5f);
+            SpawnEnnemy(wave.enemy);
+            yield return new WaitForSeconds(1f / wave.rate);
         }
+
+        ennemyAlive += wave.count;
+        waveCount++;
     }
 
-    void SpawnEnnemy()
+    void SpawnEnnemy(GameObject ennemy)
     {
-        Instantiate(ennemyPrefab, StartPoint.position, StartPoint.rotation);
+        Instantiate(ennemy, StartPoint.position, StartPoint.rotation);
     }
  
 }
